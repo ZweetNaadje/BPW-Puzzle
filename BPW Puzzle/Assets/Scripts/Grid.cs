@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class Grid
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int _width;
+    private int _height;
 
-    // Update is called once per frame
-    void Update()
+    private int[,] _gridArray; //[,] means 2-Dimensional; [,,] means 3-Dimensional;
+    
+    public Grid(int width, int height)
     {
-        
+        this._width = width;
+        this._height = _height;
+
+        _gridArray = new int[_width, _height];
     }
 }
