@@ -22,9 +22,9 @@ public class Testing : MonoBehaviour
     
     private void Start()
     {
-        _grid = new Grid(4, 2, 10f, new Vector3(20, 0));
-        new Grid(2, 5, 5f, new Vector3(0, -20)); //This does not work right now. In the video it does but why?
-        new Grid(10, 10, 20f, new Vector3(-100f, -20)); //This does not work right now. In the video it does but why?
+        _grid = new Grid(20, 20, 10f, new Vector3(-100, -100));
+        //new Grid(2, 5, 5f, new Vector3(0, -20)); //This does not work right now. In the video it does but why?
+        //new Grid(10, 10, 20f, new Vector3(-100f, -20)); //This does not work right now. In the video it does but why?
         
         
         
