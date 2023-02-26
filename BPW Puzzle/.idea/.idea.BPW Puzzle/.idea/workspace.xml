@@ -1,42 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22909f93-a4db-4c44-9d65-a7dc53ecdc59" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BPW Puzzle/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BPW Puzzle/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BPW Puzzle/.idea/projectSettingsUpdater.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BPW Puzzle/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BPW Puzzle/.idea/workspace.xml" beforeDir="false" />
+    <list default="true" id="4ab25084-1fc2-485a-a53c-69194e8921dc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/InputHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/InputHandler.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BPW Puzzle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BPW Puzzle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Door.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Door.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Door.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Door.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Player.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Player.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Player.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Player.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Puzzle.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Puzzle.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TriggerZone.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/54e510dec0ff4790babcf832afec988f1a000/bf/96fd3eca/CharacterController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2LukYEzPzoUmRre5JilRuDiLUN3" />
+  <component name="ProjectId" id="2MHDJV4uBR4mXtLmu0tJk3qymi6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Discover.Launch.Via.Unity": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "rider.run.widget.enabled.cache": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.12f1\Editor\Unity.exe" />
@@ -70,17 +69,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="22909f93-a4db-4c44-9d65-a7dc53ecdc59" name="Changes" comment="" />
-      <created>1676728402686</created>
+      <changelist id="4ab25084-1fc2-485a-a53c-69194e8921dc" name="Changes" comment="" />
+      <created>1677415544601</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1676728402686</updated>
-      <workItem from="1676728407573" duration="10274000" />
-      <workItem from="1676976732826" duration="4845000" />
-      <workItem from="1676992180703" duration="1463000" />
-      <workItem from="1677067520135" duration="944000" />
-      <workItem from="1677068499146" duration="7146000" />
-      <workItem from="1677415132576" duration="92000" />
+      <updated>1677415544601</updated>
+      <workItem from="1677415549158" duration="5444000" />
     </task>
     <servers />
   </component>
