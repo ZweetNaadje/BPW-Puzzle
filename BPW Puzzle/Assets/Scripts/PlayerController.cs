@@ -1,115 +1,82 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public class PlayerMovement : MonoBehaviour
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private Camera _camera;
+    [SerializeField] private float _rotateSpeed;
+    [SerializeField] private bool _rotateTowardsMouse;
+    
+    
+    private InputHandler _inputHandler;
+
+    private void Awake()
     {
-        [SerializeField] private CharacterController _controller;
+        _inputHandler = GetComponent<InputHandler>(); //SerializeField is now not necessary.
+    }
 
-        //[SerializeField] private Animator _animator;
-        [SerializeField] private float _groundDistance;
-        //[SerializeField] private Health _healthComponent;
+    private void Start()
+    {
+    }
 
-        private float _horizontalMovement;
-        private float _verticalMovement;
+    private void Update()
+    {
+        Vector3 targetVector = new Vector3(_inputHandler.InputVector.x, 0, _inputHandler.InputVector.y); //Converting Vector2 to Vector3
 
-        private Vector3 _currentAimPoint;
+        Vector3 movementVector = MoveTowardTarget(targetVector);
+        
+        //Move in direction we are aiming
+        MoveTowardTarget(targetVector);
 
-        private float _gravity = -9.81f;
-
-        private bool _isGrounded
+        if (!_rotateTowardsMouse)
         {
-            get
-            {
-                if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo, 1f))
-                {
-                    return hitInfo.distance <= _groundDistance; //Shorthand if statement
-                }
-
-                return false;
-            }
+            RotateTowardMovementVector(movementVector);
         }
-
-        public double health
+        else
         {
-            get
-            {
-                return 0; //_healthComponent.currentHealth;
-            }
-
+            RotateTowardMouseVector();
         }
+    }
 
-        // Start is called before the first frame update
-        void Start()
+    private void RotateTowardMouseVector()
+    {
+       Ray ray = _camera.ScreenPointToRay(_inputHandler.MousePosition);
+       RaycastHit raycastHit; 
+       
+       if (Physics.Raycast(ray, out raycastHit, maxDistance: 300f))
+       {
+           Vector3 target = raycastHit.point;
+           target.y = transform.position.y;
+           transform.LookAt(target);
+       }
+
+    }
+
+    private void RotateTowardMovementVector(Vector3 movementVector)
+    {
+        if (movementVector.magnitude == 0)
         {
-            Cursor.visible = false;
+            return;
         }
+        
+        Quaternion rotation = Quaternion.LookRotation(movementVector);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, _rotateSpeed);
+    }
 
-        // Update is called once per frame
-        void Update()
-        {
-            CalcAimPoint();
-            ProcessInput();
-            RotateTowards(_currentAimPoint);
-            //UpdateAnimations();
-        }
-
-        public void TakeDamage(double damage)
-        {
-            //_healthComponent.TakeDmg(damage);
-        }
-
-        private void CalcAimPoint()
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Plane plane = new Plane(Vector3.up, Vector3.zero);
-
-            if (!plane.Raycast(ray, out float distance))
-            {
-                _currentAimPoint = Vector3.zero;
-                return;
-            }
-
-            _currentAimPoint = ray.GetPoint(distance);
-        }
-
-        private void RotateTowards(Vector3 position)
-        {
-            position.y = transform.position.y;
-            Vector3 targetDirection = position - transform.position;
-            Vector3 newDirection =
-                Vector3.RotateTowards(transform.forward, targetDirection, 360 * Time.deltaTime, 0.0f);
-            transform.rotation = Quaternion.LookRotation(newDirection);
-        }
-
-        private void ProcessInput()
-        {
-            Vector3 axisVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-            axisVector = Quaternion.Euler(0f, 45f, 0f) * axisVector;
-
-            float verticalSpeed = 0f;
-
-            if (!_isGrounded)
-            {
-                verticalSpeed = _gravity * Time.deltaTime;
-            }
-
-            if (axisVector.magnitude > 0)
-            {
-                Vector3 normalizedLookingAt = transform.forward.normalized;
-
-                _verticalMovement = Mathf.Clamp(Vector3.Dot(axisVector, normalizedLookingAt), -1, 1);
-
-                Vector3 perpendicularLookingAt = new Vector3(normalizedLookingAt.z, 0f, -normalizedLookingAt.x);
-
-                _horizontalMovement = Mathf.Clamp(Vector3.Dot(axisVector, perpendicularLookingAt), -1, 1);
-            }
-
-            Vector3 movementVector = axisVector.normalized * Time.deltaTime * 2.5f;
-            movementVector.y = verticalSpeed;
-            _controller.Move(movementVector);
-        }
+    private Vector3 MoveTowardTarget(Vector3 targetVector)
+    {
+        float speed = _moveSpeed * Time.deltaTime;
+        float cameraOffset = _camera.transform.rotation.eulerAngles.y;
+        
+        targetVector = Quaternion.Euler(0, cameraOffset, 0) * targetVector;
+        Vector3 targetPosition = transform.position + targetVector * speed;
+        
+        targetVector = Vector3.Normalize(targetVector);
+        transform.position = targetPosition;
+        
+        return targetVector;
     }
 }
