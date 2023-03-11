@@ -82,3 +82,5 @@ public class TriggerZone : MonoBehaviour
         //Set a public bool (prequisite for opening puzzledoor) on false 
     }*/
 }
+
+

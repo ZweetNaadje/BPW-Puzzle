@@ -13,9 +13,9 @@ public class InputHandler : MonoBehaviour
             return _inputVector2;
         }
 
-        private set //default dit altijd naar private?
+        private set //Getters and setters default to Public
         {
-            _inputVector2 = value; //Waarom value gebruiken?
+            _inputVector2 = value; //Value is a reserved keyword
         }
     }
     
@@ -29,9 +29,9 @@ public class InputHandler : MonoBehaviour
             return _mousePosition;
         }
 
-        private set //default dit altijd naar private?
+        private set //Getters and setters default to Public
         {
-            _mousePosition = value; //Waarom value gebruiken?
+            _mousePosition = value; //Value is a reserved keyword
         }
     }
 
@@ -42,10 +42,10 @@ public class InputHandler : MonoBehaviour
 
     private void MovePlayer()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        InputVector = new Vector2(horizontal, vertical);
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        
+        InputVector = new Vector2(horizontal, vertical).normalized;
 
         MousePosition = Input.mousePosition;
     }

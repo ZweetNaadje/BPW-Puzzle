@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,8 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private bool _rotateTowardsMouse;
-    
-    
+
+    [SerializeField] private Vector3 _cameraOffset;
+
     private InputHandler _inputHandler;
 
     private void Awake()
@@ -18,16 +20,13 @@ public class PlayerController : MonoBehaviour
         _inputHandler = GetComponent<InputHandler>(); //SerializeField is now not necessary.
     }
 
-    private void Start()
+    public void EntirePlayerMovement()
     {
-    }
-
-    private void Update()
-    {
-        Vector3 targetVector = new Vector3(_inputHandler.InputVector.x, 0, _inputHandler.InputVector.y); //Converting Vector2 to Vector3
+        Vector3 targetVector =
+            new Vector3(_inputHandler.InputVector.x, 0, _inputHandler.InputVector.y); //Converting Vector2 to Vector3
 
         Vector3 movementVector = MoveTowardTarget(targetVector);
-        
+
         //Move in direction we are aiming
         MoveTowardTarget(targetVector);
 
@@ -39,20 +38,22 @@ public class PlayerController : MonoBehaviour
         {
             RotateTowardMouseVector();
         }
+
+        _camera.transform.position = transform.position + _cameraOffset;
     }
 
     private void RotateTowardMouseVector()
     {
-       Ray ray = _camera.ScreenPointToRay(_inputHandler.MousePosition);
-       RaycastHit raycastHit; 
-       
-       if (Physics.Raycast(ray, out raycastHit, maxDistance: 300f))
-       {
-           Vector3 target = raycastHit.point;
-           target.y = transform.position.y;
-           transform.LookAt(target);
-       }
+        Ray ray = _camera.ScreenPointToRay(_inputHandler.MousePosition);
+        RaycastHit raycastHit;
+        LayerMask mask = LayerMask.GetMask("Ground");
 
+        if (Physics.Raycast(ray, out raycastHit, maxDistance: 300f, mask))
+        {
+            Vector3 target = raycastHit.point;
+            target.y = transform.position.y;
+            transform.LookAt(target);
+        }
     }
 
     private void RotateTowardMovementVector(Vector3 movementVector)
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        
+
         Quaternion rotation = Quaternion.LookRotation(movementVector);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, _rotateSpeed);
     }
@@ -69,14 +70,15 @@ public class PlayerController : MonoBehaviour
     private Vector3 MoveTowardTarget(Vector3 targetVector)
     {
         float speed = _moveSpeed * Time.deltaTime;
-        float cameraOffset = _camera.transform.rotation.eulerAngles.y;
-        
+        float cameraOffset =
+            _camera.transform.rotation.eulerAngles.y; //Moving "up" in terms of how the camera is rotated
+
         targetVector = Quaternion.Euler(0, cameraOffset, 0) * targetVector;
         Vector3 targetPosition = transform.position + targetVector * speed;
-        
+
         targetVector = Vector3.Normalize(targetVector);
         transform.position = targetPosition;
-        
+
         return targetVector;
     }
 }
